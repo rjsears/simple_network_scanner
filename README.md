@@ -45,7 +45,7 @@ This project was born out of a need for a quick, visual network scanner that und
 <li><b>Subnet-Aware Scanning</b> - Supports any CIDR netmask from /8 to /32</li>
 <li><b>Intelligent IP Handling</b> - Automatically identifies and skips network and broadcast addresses</li>
 <li><b>Parallel Scanning</b> - Uses multithreading for fast scans (20 concurrent threads)</li>
-<li><b>Reverse DNS Lookup</b> - Resolves hostnames for all scanned IPs</li>
+<li><b>Reverse DNS Lookup</b> - Resolves hostnames for all scanned IPs (prioritizes /etc/hosts, falls back to DNS)</li>
 <li><b>Beautiful Terminal UI</b> - Color-coded results with progress bar using the Rich library</li>
 <li><b>Input Validation</b> - Validates IP addresses and netmask entries with helpful error messages</li>
 <li><b>Network/Broadcast Identification</b> - Clearly marks NTWRK and BCAST addresses in results</li>
@@ -54,17 +54,7 @@ This project was born out of a need for a quick, visual network scanner that und
 
 ## Screenshots
 
-### Banner and Input
-<img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_banner.png?raw=true" alt="Network Scanner Banner">
-
-### Progress Bar
-<img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_progress.png?raw=true" alt="Network Scanner Progress">
-
-### Scan Results
-<img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_results.png?raw=true" alt="Network Scanner Results">
-
-### Summary
-<img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_summary.png?raw=true" alt="Network Scanner Summary">
+<img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/screenshot1.png?raw=true" alt="Network Scanner Screenshot">
 
 <hr>
 
@@ -162,7 +152,7 @@ If you start at `10.200.40.50` with 50 hosts and a /26 netmask:
 
 | Status | Color | Description |
 |--------|-------|-------------|
-| ● UP   | Green | Host responded to ping |
+| ● UP | Green | Host responded to ping |
 | ● DOWN | Red (Yellow IP) | Host did not respond |
 | ◆ NTWRK | Cyan | Network address (not pinged) |
 | ◆ BCAST | Magenta | Broadcast address (not pinged) |
@@ -199,7 +189,7 @@ sudo python3 scan_network.py
 The scanner uses 20 parallel threads by default. If scanning across a slow network or VPN, results may take longer.
 
 ### No hostnames showing
-Reverse DNS lookups depend on your DNS server having PTR records for the scanned IPs. If no PTR record exists, `-` is displayed.
+Hostname resolution first checks `/etc/hosts` for a matching IP, then falls back to reverse DNS lookups. If neither has an entry for the IP, `-` is displayed. Make sure your `/etc/hosts` file has entries or your DNS server has PTR records configured.
 
 ### Rich library not found
 Make sure you have installed the Rich library:

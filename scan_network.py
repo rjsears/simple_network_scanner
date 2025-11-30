@@ -1,13 +1,5 @@
 #!/usr/bin/env python3
 
-# Simple IP Network Scanner
-# Richard J. Sears
-# richardjsears@gmail.com
-# Version 1.0.0
-# November 30th, 2025
-
-
-
 import subprocess
 import socket
 import sys
@@ -43,8 +35,35 @@ def ping_host(ip: str) -> bool:
         return False
 
 
+def load_hosts_file() -> dict:
+    """Load /etc/hosts into a dictionary for IP to hostname lookup."""
+    hosts = {}
+    try:
+        with open('/etc/hosts', 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        ip = parts[0]
+                        hostname = parts[1]
+                        hosts[ip] = hostname
+    except Exception:
+        pass
+    return hosts
+
+
+# Load hosts file at startup
+HOSTS_FILE = load_hosts_file()
+
+
 def get_hostname(ip: str) -> str:
-    """Get hostname for an IP address via reverse DNS."""
+    """Get hostname for an IP address via reverse DNS or /etc/hosts."""
+    # First check /etc/hosts
+    if ip in HOSTS_FILE:
+        return HOSTS_FILE[ip]
+
+    # Then try reverse DNS
     try:
         hostname = socket.gethostbyaddr(ip)[0]
         return hostname
@@ -314,7 +333,7 @@ def main():
     with Progress(
             SpinnerColumn(spinner_name="dots12", style="bright_yellow"),
             TextColumn("[bright_white]{task.description}[/bright_white]"),
-            BarColumn(bar_width=50, style="bright_blue", complete_style="bright_yellow", finished_style="bright_green"),
+            BarColumn(bar_width=41, style="bright_blue", complete_style="bright_yellow", finished_style="bright_green"),
             TextColumn("[bright_magenta]{task.percentage:>3.0f}%[/bright_magenta]"),
             TimeElapsedColumn(),
             console=console
