@@ -1,7 +1,7 @@
 # Simple Network Scanner
 
 <h2 align="center">
-  <a name="simple_network_scanner_logo" href="https://github.com/rjsears/simple_network_scanner"><img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_logo.png?raw=true" alt="Simple Network Scanner" height="200" width="200"></a>
+  <a name="simple_network_scanner_logo" href="https://github.com/rjsears/simple_network_scanner"><img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/simple_network_scanner.jpeg" alt="Simple Network Scanner" height="200" width="200"></a>
   </h2>
   <p align="center">
   A Python-based network scanning utility with a beautiful terminal interface
