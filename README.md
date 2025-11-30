@@ -1,12 +1,15 @@
+# Simple Network Scanner
+
 <h2 align="center">
   <a name="simple_network_scanner_logo" href="https://github.com/rjsears/simple_network_scanner"><img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_logo.png?raw=true" alt="Simple Network Scanner" height="200" width="200"></a>
-  <br>
-  Simple Network Scanner (scan_network.py)
   </h2>
   <p align="center">
   A Python-based network scanning utility with a beautiful terminal interface
   </p>
 
+**Version:** 1.0.0   
+**Release Date:** November 30, 2025 
+  
 <h4 align="center">Be sure to :star: my repo so you can keep up to date on any updates and progress!</h4>
 <br>
 <div align="center">
