@@ -1,7 +1,7 @@
 <h2 align="center">
   <a name="simple_network_scanner_logo" href="https://github.com/rjsears/simple_network_scanner"><img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_logo.png?raw=true" alt="Simple Network Scanner" height="200" width="200"></a>
   <br>
-  Simple Network Scanner (netscan.py)
+  Simple Network Scanner (scan_network.py)
   </h2>
   <p align="center">
   A Python-based network scanning utility with a beautiful terminal interface
@@ -24,22 +24,22 @@ This project was born out of a need for a quick, visual network scanner that und
 </p>
 <br>
 
-## 📖 Table of Contents
+## Table of Contents
 
-- [Features](#-features)
-- [Screenshots](#-screenshots)
-- [Requirements](#-requirements)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Understanding Subnets](#-understanding-subnets)
-- [Output Reference](#-output-reference)
-- [Troubleshooting](#-troubleshooting)
-- [Acknowledgments](#-acknowledgments)
-- [License](#-license)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Understanding Subnets](#understanding-subnets)
+- [Output Reference](#output-reference)
+- [Troubleshooting](#troubleshooting)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
 
 <hr>
 
-## 🌟 Features
+## Features
 
 <ul>
 <li><b>Subnet-Aware Scanning</b> - Supports any CIDR netmask from /8 to /32</li>
@@ -52,7 +52,7 @@ This project was born out of a need for a quick, visual network scanner that und
 </ul>
 <hr>
 
-## 📸 Screenshots
+## Screenshots
 
 ### Banner and Input
 <img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/netscan_banner.png?raw=true" alt="Network Scanner Banner">
@@ -68,7 +68,7 @@ This project was born out of a need for a quick, visual network scanner that und
 
 <hr>
 
-## 📋 Requirements
+## Requirements
 
 - Python 3.6+
 - macOS or Linux (uses native `ping` command)
@@ -76,7 +76,7 @@ This project was born out of a need for a quick, visual network scanner that und
 
 <hr>
 
-## 💾 Installation
+## Installation
 
 Clone the repository:
 ```bash
@@ -91,16 +91,16 @@ pip install rich
 
 Make it executable (optional):
 ```bash
-chmod +x netscan.py
+chmod +x scan_network.py
 ```
 
 <hr>
 
-## 🚀 Usage
+## Usage
 
 Run the scanner:
 ```bash
-python3 netscan.py
+python3 scan_network.py
 ```
 
 You will be prompted for:
@@ -122,7 +122,7 @@ Enter the CIDR netmask (e.g., 8, 16, 22, 23, 24, 25, 26, 27, 28):
 
 <hr>
 
-## 📚 Understanding Subnets
+## Understanding Subnets
 
 The scanner respects subnet boundaries based on the CIDR netmask you provide. This is **critical** for accurate scanning - without knowing the netmask, the scanner cannot determine which addresses are valid hosts versus network/broadcast addresses.
 
@@ -156,7 +156,7 @@ If you start at `10.200.40.50` with 50 hosts and a /26 netmask:
 
 <hr>
 
-## 📊 Output Reference
+## Output Reference
 
 ### Status Indicators
 
@@ -187,12 +187,12 @@ The summary panel shows:
 
 <hr>
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### "Permission denied" errors
 Some systems require elevated privileges for ICMP ping. Try:
 ```bash
-sudo python3 netscan.py
+sudo python3 scan_network.py
 ```
 
 ### Slow scans
@@ -209,7 +209,7 @@ pip install rich
 
 <hr>
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 * **My Amazing and loving family!** My family puts up with all my coding and automation projects and encourages me in everything. Without them, my projects would not be possible.
 * **My brother James**, who is a continual source of inspiration to me and others. Everyone should have a brother as awesome as mine!
@@ -217,7 +217,7 @@ pip install rich
 
 <hr>
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
