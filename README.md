@@ -1,5 +1,3 @@
-# Simple Network Scanner
-
 <h2 align="center">
   <a name="simple_network_scanner_logo" href="https://github.com/rjsears/simple_network_scanner"><img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/simple_network_scanner.jpeg" alt="Simple Network Scanner"></a>
   </h2>
