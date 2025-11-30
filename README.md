@@ -54,7 +54,7 @@ This project was born out of a need for a quick, visual network scanner that und
 
 ## Screenshots
 
-<img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/screenshot1.png?raw=true" alt="Network Scanner Screenshot">
+<img src="https://github.com/rjsears/simple_network_scanner/blob/main/images/screenshot1.png" alt="Network Scanner Screenshot">
 
 <hr>
 
