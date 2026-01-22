@@ -6,7 +6,8 @@
   </p>
 
 **Version:** 1.0.0   
-**Release Date:** November 30, 2025 
+**Release Date:** November 30, 2025  
+**OSX Release Date:** January 21st, 2026  
   
 <h4 align="center">Be sure to :star: my repo so you can keep up to date on any updates and progress!</h4>
 <div align="center">
@@ -29,6 +30,7 @@ This project was born out of a need for a quick, visual network scanner that und
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Requirements](#requirements)
+- [macOS Desktop App (SwiftUI)](#macos-desktop-app-swiftui)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Understanding Subnets](#understanding-subnets)
@@ -63,6 +65,21 @@ This project was born out of a need for a quick, visual network scanner that und
 - Python 3.6+
 - macOS or Linux (uses native `ping` command)
 - [Rich](https://github.com/Textualize/rich) library for terminal formatting
+
+<hr>
+
+## macOS Desktop App (SwiftUI)
+
+There is also a standalone macOS desktop app with the same scan logic and a polished UI.
+
+- Source: `macos_gui/`
+- Build (universal binary):
+  ```bash
+  ./macos_gui/build_icon.sh
+  ./macos_gui/build_app.sh
+  ```
+- Output: `macos_gui/build/NetworkTool.app`
+- Requires Xcode Command Line Tools and macOS 12+.
 
 <hr>
 
