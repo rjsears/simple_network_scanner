@@ -35,35 +35,8 @@ def ping_host(ip: str) -> bool:
         return False
 
 
-def load_hosts_file() -> dict:
-    """Load /etc/hosts into a dictionary for IP to hostname lookup."""
-    hosts = {}
-    try:
-        with open('/etc/hosts', 'r') as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#'):
-                    parts = line.split()
-                    if len(parts) >= 2:
-                        ip = parts[0]
-                        hostname = parts[1]
-                        hosts[ip] = hostname
-    except Exception:
-        pass
-    return hosts
-
-
-# Load hosts file at startup
-HOSTS_FILE = load_hosts_file()
-
-
 def get_hostname(ip: str) -> str:
-    """Get hostname for an IP address via reverse DNS or /etc/hosts."""
-    # First check /etc/hosts
-    if ip in HOSTS_FILE:
-        return HOSTS_FILE[ip]
-
-    # Then try reverse DNS
+    """Get hostname for an IP address via reverse DNS."""
     try:
         hostname = socket.gethostbyaddr(ip)[0]
         return hostname

@@ -66,7 +66,7 @@ final class NetworkScanner {
         }
 
         let isUp = pingHost(ipInfo.ip)
-        let hostname = isUp ? reverseDNS(ipInfo.ip) : "-"
+        let hostname = reverseDNS(ipInfo.ip)
         return HostResult(ip: ipInfo.ip, status: isUp ? .up : .down, hostname: hostname, ipInt: ipInfo.ipInt)
     }
 

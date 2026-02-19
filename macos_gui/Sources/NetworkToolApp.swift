@@ -216,9 +216,9 @@ struct ResultsCard: View {
                     Text(result.hostname)
                         .font(.system(size: 12, weight: .medium, design: .monospaced))
                 }
-                .width(min: 200, ideal: 360, max: 600)
+                .width(min: 200, ideal: 360, max: 1000)
             }
-            .frame(minHeight: 260)
+            .frame(minHeight: 200, maxHeight: .infinity)
             .tableStyle(.inset(alternatesRowBackgrounds: true))
         }
         .padding(18)
@@ -329,7 +329,6 @@ struct TechBackground: View {
             if let image = loadBackgroundImage() {
                 Image(nsImage: image)
                     .resizable()
-                    .scaledToFill()
                     .ignoresSafeArea()
                     .overlay(Color.white.opacity(0.28))
             } else {
@@ -556,10 +555,10 @@ final class AppState: ObservableObject {
 
 enum AppInfo {
     static var versionString: String {
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0"
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.1"
         return "v\(version)"
     }
-    static let releaseDate = "2025-01-17"
+    static let releaseDate = "2026-02-19"
 }
 
 @MainActor
