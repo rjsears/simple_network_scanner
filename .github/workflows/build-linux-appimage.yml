@@ -2,9 +2,12 @@ name: Build Linux AppImage
 
 on:
   push:
-    tags:
-      - 'v*'
-      - 'V*'
+    branches:
+      - main
+    paths:
+      - 'linux_gui/src/**'
+      - 'linux_gui/assets/**'
+      - 'linux_gui/requirements.txt'
   workflow_dispatch:
 
 permissions:
@@ -29,16 +32,15 @@ jobs:
           chmod +x build_appimage.sh
           ./build_appimage.sh
 
-      - name: Upload AppImage artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: NetworkScanner-AppImage
-          path: linux_gui/build/*.AppImage
+      - name: Move AppImage to dist
+        run: |
+          mkdir -p linux_gui/dist
+          mv linux_gui/build/*.AppImage linux_gui/dist/
 
-      - name: Upload to Release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v1
-        with:
-          files: linux_gui/build/*.AppImage
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit AppImage to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add linux_gui/dist/*.AppImage
+          git diff --staged --quiet || git commit -m "build: update Linux AppImage [skip ci]"
+          git push
