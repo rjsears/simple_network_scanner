@@ -1,0 +1,54 @@
+<h2>Distribution & Packaging</h2>
+<p class="subtitle">How do you want users to install the Linux app?</p>
+
+<div class="options">
+  <div class="option" data-choice="deb-package" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>.deb Package</h3>
+      <p>Standard Ubuntu/Debian package. Users install with <code>sudo dpkg -i network-scanner.deb</code>. Creates desktop entry, handles dependencies.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Native Ubuntu format</li><li>Desktop integration</li><li>Dependency management</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More complex build process</li><li>Ubuntu/Debian only</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="appimage" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>AppImage</h3>
+      <p>Single portable executable. Download, make executable, run. No installation needed. Works on any Linux.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Universal Linux support</li><li>No root required</li><li>Simple distribution</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Larger file size (~100MB)</li><li>No auto-updates</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="pip-install" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>pip install + Desktop Entry</h3>
+      <p>Install via pip with a script that creates desktop launcher. Python-native approach.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Familiar to Python users</li><li>Easy updates via pip</li><li>Lightweight</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Requires Python knowledge</li><li>Manual desktop setup</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="both-deb-appimage" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h3>Both .deb + AppImage</h3>
+      <p>Provide both options. .deb for Ubuntu users who want native install, AppImage for portability.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Maximum flexibility</li><li>Covers all use cases</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More build maintenance</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top: 24px;"><strong>Recommendation:</strong> Start with AppImage for simplicity - single file, works everywhere. Add .deb later if needed.</p>

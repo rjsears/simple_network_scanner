@@ -1,0 +1,66 @@
+<h2>Feature Scope</h2>
+<p class="subtitle">The macOS app has these features. Should the Linux version match exactly, or add/change anything?</p>
+
+<div class="section">
+  <h3>Current macOS Features</h3>
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0;">
+    <div style="background: rgba(0,140,158,0.1); border-radius: 8px; padding: 12px; border-left: 3px solid #008c9e;">
+      <strong style="color: #008c9e;">Scan Parameters</strong><br>
+      <span style="font-size: 13px; color: #666;">Start IP, Host Count, CIDR input</span>
+    </div>
+    <div style="background: rgba(0,140,158,0.1); border-radius: 8px; padding: 12px; border-left: 3px solid #008c9e;">
+      <strong style="color: #008c9e;">Progress Bar</strong><br>
+      <span style="font-size: 13px; color: #666;">Real-time scan progress</span>
+    </div>
+    <div style="background: rgba(0,140,158,0.1); border-radius: 8px; padding: 12px; border-left: 3px solid #008c9e;">
+      <strong style="color: #008c9e;">Results Table</strong><br>
+      <span style="font-size: 13px; color: #666;">IP, Status, Hostname columns</span>
+    </div>
+    <div style="background: rgba(0,140,158,0.1); border-radius: 8px; padding: 12px; border-left: 3px solid #008c9e;">
+      <strong style="color: #008c9e;">Summary Pills</strong><br>
+      <span style="font-size: 13px; color: #666;">Clickable UP/DOWN/NET/BCAST counts</span>
+    </div>
+    <div style="background: rgba(0,140,158,0.1); border-radius: 8px; padding: 12px; border-left: 3px solid #008c9e;">
+      <strong style="color: #008c9e;">Filter Sheet</strong><br>
+      <span style="font-size: 13px; color: #666;">View hosts by status</span>
+    </div>
+    <div style="background: rgba(0,140,158,0.1); border-radius: 8px; padding: 12px; border-left: 3px solid #008c9e;">
+      <strong style="color: #008c9e;">About Dialog</strong><br>
+      <span style="font-size: 13px; color: #666;">Version info, author, GitHub link</span>
+    </div>
+  </div>
+</div>
+
+<div class="options">
+  <div class="option" data-choice="exact-match" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Exact Feature Match</h3>
+      <p>Same features as macOS - no more, no less. Consistent experience across platforms.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="add-export" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Add Export Feature</h3>
+      <p>Match macOS + add ability to export results to CSV/JSON. Useful for documentation and reporting.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="add-presets" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Add Network Presets</h3>
+      <p>Match macOS + save/load scan presets (favorite subnets). Good for repeated scans of same networks.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="add-both" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h3>Add Both Export + Presets</h3>
+      <p>All macOS features plus export and presets. Most capable version.</p>
+    </div>
+  </div>
+</div>

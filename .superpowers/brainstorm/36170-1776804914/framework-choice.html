@@ -1,0 +1,42 @@
+<h2>Linux Desktop Framework</h2>
+<p class="subtitle">Which approach should we use for your Ubuntu 25 network scanner?</p>
+
+<div class="options">
+  <div class="option" data-choice="gtk4" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>GTK4 + Python (PyGObject)</h3>
+      <p>Native GNOME/Ubuntu look and feel. Integrates naturally with Ubuntu 25's desktop environment. Smaller install size, no extra runtimes needed. Uses Python like your CLI scanner.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Native Ubuntu appearance</li><li>Lightweight</li><li>Python-based (consistent with CLI)</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Less styling flexibility</li><li>Different look than macOS version</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="qt6" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Qt6 / PySide6</h3>
+      <p>Polished, professional cross-platform look. More control over styling - can closely match the macOS version's aesthetic. Mature, battle-tested framework.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Excellent styling control</li><li>Can match macOS look</li><li>Professional appearance</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Larger dependency (~100MB)</li><li>Not native GNOME style</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="tauri" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Tauri (Rust + Web)</h3>
+      <p>Modern web-based UI with Rust backend. Smaller than Electron (~10MB vs ~150MB). Can pixel-perfectly match macOS styling using HTML/CSS.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Exact macOS style match possible</li><li>Modern stack</li><li>Small binary size</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Requires Rust toolchain</li><li>Different tech stack</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top: 24px;"><strong>Recommendation:</strong> Qt6/PySide6 offers the best balance - professional polish, styling flexibility to match your macOS app, and Python consistency.</p>

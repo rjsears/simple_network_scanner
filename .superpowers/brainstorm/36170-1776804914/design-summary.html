@@ -1,0 +1,103 @@
+<h2>Design Summary</h2>
+<p class="subtitle">Linux Desktop Network Scanner - Final Design</p>
+
+<div class="section" style="background: rgba(0,140,158,0.05); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+  <h3 style="color: #008c9e; margin-top: 0;">Technology Stack</h3>
+  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 8px; font-size: 14px;">
+    <strong>Framework:</strong> <span>PySide6 (Qt6 for Python)</span>
+    <strong>Language:</strong> <span>Python 3.10+</span>
+    <strong>Styling:</strong> <span>Qt Style Sheets (QSS) - matching macOS theme</span>
+    <strong>Packaging:</strong> <span>.deb package + AppImage</span>
+  </div>
+</div>
+
+<div class="section" style="background: rgba(0,140,158,0.05); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+  <h3 style="color: #008c9e; margin-top: 0;">Visual Design</h3>
+  <ul style="margin: 0; padding-left: 20px;">
+    <li>Teal color scheme (#008c9e primary, #4dc0cc accent)</li>
+    <li>Card-based layout with rounded corners and subtle shadows</li>
+    <li>Tech grid background with map overlay</li>
+    <li>Monospace typography throughout</li>
+    <li>Status indicator capsule in header</li>
+    <li>Clickable summary pills (UP/DOWN/NET/BCAST)</li>
+  </ul>
+</div>
+
+<div class="section" style="background: rgba(0,140,158,0.05); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+  <h3 style="color: #008c9e; margin-top: 0;">Features</h3>
+  <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
+    <tr style="border-bottom: 1px solid #ddd;">
+      <td style="padding: 8px 0;"><strong>Core Scanning</strong></td>
+      <td>Start IP, host count, CIDR input, parallel ping, reverse DNS</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd;">
+      <td style="padding: 8px 0;"><strong>Progress Display</strong></td>
+      <td>Real-time progress bar with count</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd;">
+      <td style="padding: 8px 0;"><strong>Results Table</strong></td>
+      <td>IP, Status (color-coded), Hostname columns</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd;">
+      <td style="padding: 8px 0;"><strong>Summary & Filtering</strong></td>
+      <td>Clickable pills to filter by status</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd;">
+      <td style="padding: 8px 0;"><strong>Export</strong></td>
+      <td style="color: #008c9e;"><strong>NEW:</strong> Save results to CSV or JSON</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #ddd;">
+      <td style="padding: 8px 0;"><strong>Presets</strong></td>
+      <td style="color: #008c9e;"><strong>NEW:</strong> Save/load scan configurations</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 0;"><strong>About Dialog</strong></td>
+      <td>Version, author, GitHub link</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section" style="background: rgba(0,140,158,0.05); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+  <h3 style="color: #008c9e; margin-top: 0;">Project Structure</h3>
+  <pre style="background: #1e2530; color: #e8f4f5; padding: 16px; border-radius: 8px; font-size: 12px; overflow-x: auto; margin: 0;">linux_gui/
+├── src/
+│   ├── main.py              # Entry point
+│   ├── app.py               # Main window
+│   ├── scanner.py           # Network scanning logic
+│   ├── widgets/             # Custom Qt widgets
+│   │   ├── controls.py      # Input controls card
+│   │   ├── progress.py      # Progress card
+│   │   ├── results.py       # Results table
+│   │   ├── summary.py       # Summary pills
+│   │   └── dialogs.py       # About, filter, export dialogs
+│   ├── presets.py           # Preset save/load
+│   └── styles.py            # QSS stylesheet
+├── assets/
+│   ├── app_icon.png
+│   └── map_background.png
+├── packaging/
+│   ├── debian/              # .deb packaging
+│   └── appimage/            # AppImage config
+├── requirements.txt
+├── build_deb.sh
+├── build_appimage.sh
+└── README.md</pre>
+</div>
+
+<div class="options">
+  <div class="option" data-choice="approved" onclick="toggleSelect(this)">
+    <div class="letter">✓</div>
+    <div class="content">
+      <h3>Approve Design</h3>
+      <p>This looks good - proceed to implementation planning.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="changes" onclick="toggleSelect(this)">
+    <div class="letter">✎</div>
+    <div class="content">
+      <h3>Request Changes</h3>
+      <p>I'd like to modify something before proceeding.</p>
+    </div>
+  </div>
+</div>

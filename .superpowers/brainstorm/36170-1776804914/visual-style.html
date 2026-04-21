@@ -1,0 +1,65 @@
+<h2>Visual Style Direction</h2>
+<p class="subtitle">How closely should the Linux version match your macOS app?</p>
+
+<div class="cards">
+  <div class="card" data-choice="match-macos" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #f2f6fa 0%, #e0e8f0 100%); padding: 20px; min-height: 200px;">
+      <div style="background: rgba(255,255,255,0.9); border-radius: 12px; padding: 16px; border: 1px solid rgba(77,192,204,0.5); box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        <div style="font-family: monospace; font-weight: 600; color: #141f2e; margin-bottom: 8px;">Simple Network Host Scanner</div>
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <div style="background: #fff; border: 1px solid #4dc0cc; border-radius: 4px; padding: 6px 10px; font-size: 11px; color: #666;">10.0.0.1</div>
+          <div style="background: #008c9e; color: white; border-radius: 6px; padding: 6px 12px; font-size: 11px;">Start Scan</div>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="background: rgba(77,192,204,0.2); border-radius: 12px; padding: 4px 10px; font-size: 10px; color: #008c9e;">● UP 12</span>
+          <span style="background: rgba(209,62,51,0.1); border-radius: 12px; padding: 4px 10px; font-size: 10px; color: #d13e33;">● DOWN 4</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Match macOS Style</h3>
+      <p>Same teal color scheme, card-based layout, tech grid background, monospace fonts. Feels like the same app on both platforms.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="native-fusion" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(180deg, #2d2d2d 0%, #1a1a1a 100%); padding: 20px; min-height: 200px;">
+      <div style="background: #353535; border-radius: 8px; padding: 16px; border: 1px solid #555;">
+        <div style="font-family: system-ui; font-weight: 500; color: #fff; margin-bottom: 10px;">Network Scanner</div>
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <div style="background: #2d2d2d; border: 1px solid #555; border-radius: 4px; padding: 6px 10px; font-size: 11px; color: #ccc;">10.0.0.1</div>
+          <div style="background: #3584e4; color: white; border-radius: 6px; padding: 6px 12px; font-size: 11px;">Scan</div>
+        </div>
+        <div style="height: 4px; background: #555; border-radius: 2px; overflow: hidden;">
+          <div style="width: 60%; height: 100%; background: #3584e4;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Native Ubuntu/GNOME</h3>
+      <p>Uses Ubuntu's Yaru dark theme colors, system fonts, GNOME-style controls. Feels native to Linux desktop.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #1e2530 0%, #141a22 100%); padding: 20px; min-height: 200px;">
+      <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; border: 1px solid rgba(77,192,204,0.4); box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <div style="font-family: monospace; font-weight: 600; color: #e8f4f5; margin-bottom: 8px;">Simple Network Host Scanner</div>
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid #4dc0cc; border-radius: 4px; padding: 6px 10px; font-size: 11px; color: #aaa;">10.0.0.1</div>
+          <div style="background: #008c9e; color: white; border-radius: 6px; padding: 6px 12px; font-size: 11px;">Start Scan</div>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span style="background: rgba(26,153,77,0.3); border-radius: 12px; padding: 4px 10px; font-size: 10px; color: #3ddb6e;">● UP 12</span>
+          <span style="background: rgba(209,62,51,0.2); border-radius: 12px; padding: 4px 10px; font-size: 10px; color: #f66;">● DOWN 4</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Dark Mode Hybrid</h3>
+      <p>macOS layout and teal accents, but with a sleek dark theme that looks great on Linux. Best of both worlds.</p>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top: 24px;"><strong>Recommendation:</strong> "Match macOS Style" for brand consistency, or "Dark Mode Hybrid" for a fresh Linux-native feel while keeping your design language.</p>
