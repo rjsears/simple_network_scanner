@@ -25,6 +25,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y python3 python3-pip curl file fuse libfuse2
+          pip install PySide6
 
       - name: Build AppImage
         working-directory: linux_gui
