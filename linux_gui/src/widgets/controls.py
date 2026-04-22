@@ -2,7 +2,7 @@
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import (
     QWidget, QFrame, QVBoxLayout, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton
+    QLineEdit, QPushButton, QComboBox
 )
 
 from ..styles import COLORS
@@ -37,6 +37,73 @@ class LabeledInput(QWidget):
         self.input.setEnabled(enabled)
 
 
+class LabeledComboBox(QWidget):
+    """Dropdown with label above."""
+
+    def __init__(self, label: str, items: list, default: str = "", parent=None):
+        super().__init__(parent)
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(6)
+
+        lbl = QLabel(label)
+        lbl.setProperty("class", "input-label")
+
+        self.combo = QComboBox()
+        self.combo.addItems(items)
+        self.combo.setStyleSheet(
+            f"""
+            QComboBox {{
+                background-color: {COLORS["input"]};
+                border: 1px solid {COLORS["teal_soft"]};
+                border-radius: 6px;
+                padding: 8px;
+                font-family: monospace;
+                font-size: 13px;
+                color: {COLORS["ink"]};
+            }}
+            QComboBox:focus {{
+                border: 2px solid {COLORS["teal_strong"]};
+            }}
+            QComboBox::drop-down {{
+                border: none;
+                width: 24px;
+            }}
+            QComboBox::down-arrow {{
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid {COLORS["gray"]};
+                margin-right: 8px;
+            }}
+            QComboBox QAbstractItemView {{
+                background-color: white;
+                border: 1px solid {COLORS["teal_soft"]};
+                selection-background-color: {COLORS["teal_soft"]};
+            }}
+            """
+        )
+        if default:
+            idx = self.combo.findText(default)
+            if idx >= 0:
+                self.combo.setCurrentIndex(idx)
+
+        layout.addWidget(lbl)
+        layout.addWidget(self.combo)
+
+    def text(self) -> str:
+        return self.combo.currentText()
+
+    def set_text(self, text: str):
+        idx = self.combo.findText(text)
+        if idx >= 0:
+            self.combo.setCurrentIndex(idx)
+
+    def set_enabled(self, enabled: bool):
+        self.combo.setEnabled(enabled)
+
+
 class ControlsCard(QFrame):
     """Card containing scan parameter inputs and action buttons."""
 
@@ -64,7 +131,9 @@ class ControlsCard(QFrame):
         self._start_ip = LabeledInput("Start IP", "10.0.0.1")
         self._host_count = LabeledInput("Hosts", "64")
         self._host_count.setFixedWidth(120)
-        self._cidr = LabeledInput("CIDR", "24")
+
+        cidr_options = ["8", "16", "20", "22", "23", "24", "25", "26", "27", "28", "29", "30"]
+        self._cidr = LabeledComboBox("CIDR", cidr_options, default="24")
         self._cidr.setFixedWidth(120)
 
         inputs_row.addWidget(self._start_ip)
