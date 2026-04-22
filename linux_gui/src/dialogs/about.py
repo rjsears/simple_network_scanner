@@ -15,7 +15,7 @@ class AboutDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("About")
-        self.setFixedSize(480, 520)
+        self.setFixedSize(550, 620)
         self.setModal(True)
         self.setStyleSheet(f"background-color: {COLORS['surface_light']};")
 
