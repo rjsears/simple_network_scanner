@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="1.0.0"
+VERSION="1.0.0b"
 PKG_NAME="network-scanner"
 BUILD_DIR="build/deb"
 INSTALL_DIR="$BUILD_DIR/$PKG_NAME/opt/network-scanner"

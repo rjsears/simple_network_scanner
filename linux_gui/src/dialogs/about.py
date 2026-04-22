@@ -1,11 +1,10 @@
 """About dialog"""
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QUrl
 from PySide6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QLabel,
     QPushButton, QFrame
 )
 from PySide6.QtGui import QDesktopServices
-from PySide6.QtCore import QUrl
 
 from ..styles import COLORS
 
@@ -84,7 +83,7 @@ class AboutDialog(QDialog):
         version_row.setAlignment(Qt.AlignCenter)
         version_row.setSpacing(10)
 
-        version_badge = QLabel("v1.0.0")
+        version_badge = QLabel("V1.0.0b")
         version_badge.setStyleSheet(
             f"""
             font-family: monospace;

@@ -1,8 +1,8 @@
 """Main application window"""
 from typing import List
 
-from PySide6.QtCore import Qt, Slot
-from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QStackedLayout
+from PySide6.QtCore import Slot
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout
 
 from .models import HostResult, HostStatus, create_scan_request
 from .scanner import NetworkScanner, ScannerThread
@@ -37,24 +37,12 @@ class MainWindow(QMainWindow):
 
     def _setup_ui(self):
         """Build the UI layout."""
-        # Central widget with stacked layout for background
-        central = QWidget()
-        self.setCentralWidget(central)
-
-        stack = QStackedLayout(central)
-        stack.setStackingMode(QStackedLayout.StackAll)
-
-        # Background layer
+        # Use TechBackground as central widget directly
         self._background = TechBackground()
-        stack.addWidget(self._background)
+        self.setCentralWidget(self._background)
 
-        # Content layer
-        content = QWidget()
-        content.setAttribute(Qt.WA_TranslucentBackground)
-        stack.addWidget(content)
-
-        # Main layout
-        layout = QVBoxLayout(content)
+        # Main layout directly on background
+        layout = QVBoxLayout(self._background)
         layout.setContentsMargins(24, 24, 24, 24)
         layout.setSpacing(18)
 
