@@ -8,6 +8,7 @@ on:
       - 'linux_gui/src/**'
       - 'linux_gui/assets/**'
       - 'linux_gui/requirements.txt'
+      - 'linux_gui/build_appimage.sh'
   workflow_dispatch:
 
 permissions:
@@ -15,7 +16,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
@@ -24,8 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3 python3-pip curl file fuse libfuse2
-          pip install PySide6
+          sudo apt-get install -y curl file fuse libfuse2
 
       - name: Build AppImage
         working-directory: linux_gui
@@ -36,6 +36,7 @@ jobs:
       - name: Move AppImage to dist
         run: |
           mkdir -p linux_gui/dist
+          rm -f linux_gui/dist/*.AppImage
           mv linux_gui/build/*.AppImage linux_gui/dist/
 
       - name: Commit AppImage to repo

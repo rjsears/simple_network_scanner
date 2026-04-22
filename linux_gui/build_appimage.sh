@@ -3,46 +3,92 @@ set -e
 
 VERSION="1.0.0"
 BUILD_DIR="build/appimage"
-APP_DIR="$BUILD_DIR/NetworkScanner.AppDir"
+PYTHON_VERSION="3.11"
 
-echo "Building AppImage..."
+echo "Building self-contained AppImage..."
 
-# Clean and create build directory
+# Clean build directory
 rm -rf "$BUILD_DIR"
-mkdir -p "$APP_DIR/usr/bin"
-mkdir -p "$APP_DIR/usr/share/applications"
-mkdir -p "$APP_DIR/usr/share/icons/hicolor/256x256/apps"
+mkdir -p "$BUILD_DIR"
+cd "$BUILD_DIR"
 
-# Copy application files
-cp -r src "$APP_DIR/usr/bin/"
-cp -r assets "$APP_DIR/usr/bin/"
-cp requirements.txt "$APP_DIR/usr/bin/"
-
-# Copy desktop entry and icon
-cp packaging/appimage/network-scanner.desktop "$APP_DIR/"
-cp packaging/appimage/network-scanner.desktop "$APP_DIR/usr/share/applications/"
-cp assets/app_icon.png "$APP_DIR/network-scanner.png"
-cp assets/app_icon.png "$APP_DIR/usr/share/icons/hicolor/256x256/apps/network-scanner.png"
-
-# Create AppRun
-cat > "$APP_DIR/AppRun" << 'EOF'
-#!/bin/bash
-SELF=$(readlink -f "$0")
-HERE=${SELF%/*}
-export PATH="${HERE}/usr/bin:$PATH"
-cd "${HERE}/usr/bin"
-exec python3 -m src.main "$@"
-EOF
-chmod +x "$APP_DIR/AppRun"
-
-# Download appimagetool if needed
-if [ ! -f "build/appimagetool" ]; then
-    echo "Downloading appimagetool..."
-    curl -Lo build/appimagetool https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-    chmod +x build/appimagetool
+# Download python-appimage
+if [ ! -f "python${PYTHON_VERSION}-appimage" ]; then
+    echo "Downloading Python ${PYTHON_VERSION} AppImage base..."
+    curl -Lo "python${PYTHON_VERSION}-appimage" \
+        "https://github.com/niess/python-appimage/releases/download/python3.11/python${PYTHON_VERSION}.11-cp311-cp311-manylinux_2_28_x86_64.AppImage"
+    chmod +x "python${PYTHON_VERSION}-appimage"
 fi
 
-# Build AppImage
-ARCH=x86_64 ./build/appimagetool "$APP_DIR" "build/NetworkScanner-${VERSION}-x86_64.AppImage"
+# Extract the Python AppImage
+echo "Extracting Python AppImage..."
+./python${PYTHON_VERSION}-appimage --appimage-extract
+mv squashfs-root NetworkScanner.AppDir
 
+# Install PySide6 into the AppImage
+echo "Installing PySide6..."
+./NetworkScanner.AppDir/AppRun -m pip install --no-cache-dir PySide6
+
+# Copy application files
+echo "Copying application files..."
+mkdir -p NetworkScanner.AppDir/opt/network-scanner
+cp -r ../../src NetworkScanner.AppDir/opt/network-scanner/
+cp -r ../../assets NetworkScanner.AppDir/opt/network-scanner/
+
+# Create the launcher script
+cat > NetworkScanner.AppDir/usr/bin/network-scanner << 'EOF'
+#!/bin/bash
+APPDIR="$(dirname "$(dirname "$(dirname "$(readlink -f "$0")")")")"
+export PATH="${APPDIR}/usr/bin:${PATH}"
+export PYTHONPATH="${APPDIR}/opt/network-scanner:${PYTHONPATH}"
+cd "${APPDIR}/opt/network-scanner"
+exec "${APPDIR}/AppRun" -m src.main "$@"
+EOF
+chmod +x NetworkScanner.AppDir/usr/bin/network-scanner
+
+# Update AppRun to launch our app
+cat > NetworkScanner.AppDir/AppRun << 'EOF'
+#!/bin/bash
+APPDIR="$(dirname "$(readlink -f "$0")")"
+export PATH="${APPDIR}/usr/bin:${PATH}"
+export LD_LIBRARY_PATH="${APPDIR}/usr/lib:${LD_LIBRARY_PATH}"
+export PYTHONHOME="${APPDIR}/usr"
+export PYTHONPATH="${APPDIR}/opt/network-scanner:${PYTHONPATH}"
+cd "${APPDIR}/opt/network-scanner"
+exec "${APPDIR}/usr/bin/python${PYTHON_VERSION}" -m src.main "$@"
+EOF
+chmod +x NetworkScanner.AppDir/AppRun
+
+# Update desktop file
+cat > NetworkScanner.AppDir/network-scanner.desktop << EOF
+[Desktop Entry]
+Name=Network Scanner
+Comment=Simple Network Host Scanner
+Exec=network-scanner
+Icon=network-scanner
+Terminal=false
+Type=Application
+Categories=Network;Utility;
+EOF
+cp NetworkScanner.AppDir/network-scanner.desktop NetworkScanner.AppDir/usr/share/applications/
+
+# Copy icon
+cp ../../assets/app_icon.png NetworkScanner.AppDir/network-scanner.png
+mkdir -p NetworkScanner.AppDir/usr/share/icons/hicolor/256x256/apps/
+cp ../../assets/app_icon.png NetworkScanner.AppDir/usr/share/icons/hicolor/256x256/apps/network-scanner.png
+
+# Download appimagetool
+if [ ! -f "appimagetool" ]; then
+    echo "Downloading appimagetool..."
+    curl -Lo appimagetool \
+        "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+    chmod +x appimagetool
+fi
+
+# Build the final AppImage
+echo "Building final AppImage..."
+ARCH=x86_64 ./appimagetool NetworkScanner.AppDir "../NetworkScanner-${VERSION}-x86_64.AppImage"
+
+cd ..
+echo ""
 echo "AppImage built: build/NetworkScanner-${VERSION}-x86_64.AppImage"
