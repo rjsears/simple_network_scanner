@@ -16,7 +16,7 @@ cd "$BUILD_DIR"
 if [ ! -f "python${PYTHON_VERSION}-appimage" ]; then
     echo "Downloading Python ${PYTHON_VERSION} AppImage base..."
     curl -Lo "python${PYTHON_VERSION}-appimage" \
-        "https://github.com/niess/python-appimage/releases/download/python3.11/python${PYTHON_VERSION}.11-cp311-cp311-manylinux_2_28_x86_64.AppImage"
+        "https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.14-cp311-cp311-manylinux_2_28_x86_64.AppImage"
     chmod +x "python${PYTHON_VERSION}-appimage"
 fi
 
@@ -55,7 +55,7 @@ export LD_LIBRARY_PATH="${APPDIR}/usr/lib:${LD_LIBRARY_PATH}"
 export PYTHONHOME="${APPDIR}/usr"
 export PYTHONPATH="${APPDIR}/opt/network-scanner:${PYTHONPATH}"
 cd "${APPDIR}/opt/network-scanner"
-exec "${APPDIR}/usr/bin/python${PYTHON_VERSION}" -m src.main "$@"
+exec "${APPDIR}/usr/bin/python3.11" -m src.main "$@"
 EOF
 chmod +x NetworkScanner.AppDir/AppRun
 
