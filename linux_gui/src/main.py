@@ -15,6 +15,7 @@ def main():
     app.setApplicationName("Simple Network Host Scanner")
     app.setOrganizationName("RJSears")
     app.setApplicationVersion("1.0.0b")
+    app.setDesktopFileName("network-scanner")
 
     # Set app icon
     assets_dir = Path(__file__).parent.parent / "assets"
