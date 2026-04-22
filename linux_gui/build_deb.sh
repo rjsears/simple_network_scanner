@@ -31,7 +31,7 @@ Version: $VERSION
 Section: net
 Priority: optional
 Architecture: all
-Depends: python3 (>= 3.10), python3-pyside6
+Depends: python3 (>= 3.10), python3-pip
 Maintainer: Richard J. Sears <richardjsears@protonmail.com>
 Description: Simple Network Host Scanner
  A desktop application for scanning network hosts,
@@ -42,6 +42,7 @@ EOF
 cat > "$BUILD_DIR/$PKG_NAME/DEBIAN/postinst" << 'EOF'
 #!/bin/bash
 chmod +x /opt/network-scanner/run.sh
+pip3 install --break-system-packages PySide6 2>/dev/null || pip3 install PySide6
 EOF
 chmod 755 "$BUILD_DIR/$PKG_NAME/DEBIAN/postinst"
 
